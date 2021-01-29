@@ -1,0 +1,35 @@
+ <!-- Login -->
+<div class="container">
+    <form #ngForm="ngForm" class="login">
+
+        <h4 class="login__header"> You Again .. Login Form </h4>
+
+        <div class="form-group" [ngClass]="{'invalid':email.invalid && email.touched}">
+            <label for="" class="control-label">Email Address</label>
+            <input required [email]="user.email !== ''" #email="ngModel" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" class="form-control" type="text" name="email" id="">
+            <span class="help-block" *ngIf="email.errors?.required && email.touched">  Email is required</span>
+            <span class="help-block " *ngIf=" email.errors?.email && email.touched">  Email is Invalid</span>
+        </div>
+        <!-- -------------------------------------------------------------------------- -->
+
+        <div class="form-group login__Password"  [ngClass]="{'invalid':password.invalid && password.touched} ">
+            <a onclick= "alert('Do You Forget Your Password ?!!!!')" class="login__forget-password">(Forget Password?)</a>
+            <label for="">Password</label>
+            <input required #password="ngModel"  [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" class="form-control" type="password" name="password" id="">
+            <span class="help-block " *ngIf=" password.errors?.password && password.touched"> Invalid password</span>
+        </div>
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="login__remember-me">
+            <div ngModel class="form-group__checkbox">
+                <input ngModel type="checkbox" name="remCheck" id="">
+            <span>Remember Me</span>
+        </div>
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="add-product__actions">
+                <button routerLink="/home"  class="btn btn--gray">Cancel</button>
+                <button (click)="onSubmit()"   class="btn btn--primary">Login</button>
+            </div>
+        </div>
+        <a routerLink="/register"  class="login__register-now">Register Now</a>
+    </form>
+</div>
